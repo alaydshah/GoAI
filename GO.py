@@ -9,16 +9,16 @@ class Go:
         self.size = n
         self.board = Board(self.size)
 
-    def place_stone(self, move):
+    def apply_move(self, move):
         # move = Move(self.board, point)
         # if not move.is_valid_move():
         #     return False
         if not move.isValid:
             return False
-        new_board = deepcopy(self.board.current_board)
-        new_board[move.point.x][move.point.y] = self.board.player
-        self.board.update_board(new_board)
-        return True
+        new_board:Board = deepcopy(self.board)
+        if move.is_play:
+            new_board.place_stone(move)
+        return new_board
 
     def get_legal_moves(self):
         moves = []
