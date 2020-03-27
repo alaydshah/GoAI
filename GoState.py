@@ -62,11 +62,6 @@ class State:
             return last_move.is_pass and last_to_last_move.is_pass
         return False
 
-    def winner(self):
-        if self.stone_diff() > 0:
-            return self.next_player
-        else:
-            return self.other_player
 
 
 

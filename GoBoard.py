@@ -55,7 +55,10 @@ class Board:
                     return True
         return False
 
-    def get_liberty(self, point):
+    def get_liberty(self, move: Move):
+        if move.is_pass:
+            return 4
+        point = move.point
         liberty = 0
         connection_chain = self.get_connection_chain(point)
         for stone in connection_chain:

@@ -15,13 +15,17 @@ class Go:
             self.our_player = int(lines[0])
             self.other_player = 3-self.our_player
             self.cur_step_num = None
+            # self.good_moves = [Move(Point(1, 1)),
+            #                    Move(Point(1, 2)),
+            #                    Move(Point(1, 3)),
+            #                    Move(Point(2, 1)),
+            #                    Move(Point(2, 3)),
+            #                    Move(Point(3, 1)),
+            #                    Move(Point(3, 2)),
+            #                    Move(Point(3, 3))]
             self.good_moves = [Move(Point(1, 1)),
-                               Move(Point(1, 2)),
                                Move(Point(1, 3)),
-                               Move(Point(2, 1)),
-                               Move(Point(2, 3)),
                                Move(Point(3, 1)),
-                               Move(Point(3, 2)),
                                Move(Point(3, 3))]
 
             previous_board_arr = []
@@ -83,6 +87,18 @@ class Go:
         moves.append(pass_move)
         return moves
 
+    # def valid_good_move(self):
+    #     moves_to_remove = set()
+    #     for move in self.good_moves:
+    #         if self.board.get_point_color(move.point) == self.our_player:
+    #             for point_neighbors in move.point.get_neighbors():
+    #                 moves_to_remove.add(Move(point_neighbors))
+    #     good_moves_set = set(self.good_moves)
+    #     priority_moves = good_moves_set - moves_to_remove
+    #     priority_moves = list(filter(self.board.valid_move_check, priority_moves))
+    #     if priority_moves:
+    #         return random.choice(priority_moves)
+    #     return random.choice(self.good_moves)
+
     def valid_good_move(self):
-        self.good_moves = list(filter(self.board.valid_move_check, self.good_moves))
-        return random.choice(self.good_moves)
+        return random.choice(list(filter(self.board.valid_move_check, self.good_moves)))

@@ -14,8 +14,14 @@ class Move:
     def pass_turn(cls):
         return Move()
 
+    def __eq__(self, other):
+        return isinstance(other, Move) and self.point == other.point
+
     def __str__(self):
         if self.is_play:
             return str(self.point.x) + ',' + str(self.point.y)
         else:
             return "PASS\n"
+
+    def __hash__(self):
+        return hash(str(self))
